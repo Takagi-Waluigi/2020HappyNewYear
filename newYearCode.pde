@@ -4,11 +4,11 @@ PImage qr;
 PImage code;
 MidiBus myBus;
 
-int num1 = 154; //277
-int num2 = 11; // 921
-int num3 = 7; //3
-int num4 = 33; //39
-int num5 = 9; //3
+int num1 = ###;
+int num2 = ###;
+int num3 = #;
+int num4 = #;
+int num5 = #;
 int label = 0;
 float theta = 0;
 int offset = 12;
