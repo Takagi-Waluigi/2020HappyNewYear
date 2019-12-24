@@ -6,11 +6,11 @@ PImage code;
 PImage img;
 MidiBus myBus;
 
-int num1 = 142; //277
-int num2 = 52; // 921
-int num3 = 1; //3
-int num4 = 5; //39
-int num5 = 21; //3
+int num1 = ###;
+int num2 = ###;
+int num3 = #;
+int num4 = #;
+int num5 = #;
 int label = 0;
 float theta = 0;
 int offset = 12;
