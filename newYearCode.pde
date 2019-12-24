@@ -1,14 +1,16 @@
+
 import themidibus.*;
 import processing.pdf.*;
 PImage qr;
 PImage code;
+PImage img;
 MidiBus myBus;
 
-int num1 = ###;
-int num2 = ###;
-int num3 = #;
-int num4 = #;
-int num5 = #;
+int num1 = 142; //277
+int num2 = 52; // 921
+int num3 = 1; //3
+int num4 = 5; //39
+int num5 = 21; //3
 int label = 0;
 float theta = 0;
 int offset = 12;
@@ -17,8 +19,8 @@ int col, col2, col3;
 
 
 void setup() {
-  // size(600, 888);
-  size(500, 740);
+  size(600, 888);
+ //size(500, 740);
   colorMode(HSB, 360, 100, 100);
 
   myBus = new MidiBus(this, 0, 1);
@@ -35,10 +37,12 @@ void draw() {
   translate(width/2, height/2);
   
   //call functions...
+  grid();
   colCalc(); 
+  words();
   wavePoints();
   circles();
-  words();
+  
 
   //draw QR code.
   image(qr, -width/2+10, height/2-160, 150, 150);
@@ -60,13 +64,13 @@ void colCalc() {
   col3 = col - 120;
 
   if (col2 >360) { 
-    col2 = col2-360;
+    col2 = col2 - 360;
   }
   if (col2 < 0) { 
     col2 = 360 - col2;
   }
   if (col3 >360) { 
-    col3 = col3-360;
+    col3 = col3 -360;
   }
   if (col2 < 0) { 
     col3 = 360 - col3;
@@ -139,29 +143,38 @@ void circles() {
   endShape(CLOSE);
 }
 
+void grid(){
+  for(int x=-width/2; x < width/2; x+=30){
+    for(int y=-height/2; y < height/2; y+=30){
+      stroke(0, 50);
+      line(x-5, y, x+5, y);
+      line(x, y-5, x, y+5);
+      
+    }
+  }
+}
+
 void words() {
   fill(0);
   textFont(sub);
   textAlign(LEFT);
-  text("Happy New Year!!\nYour adress numbers appear as shapes, patterns, colors, and so on...", -width/2+20, -height/2+20);
-  text("####", -width/2+200, height/2-62);
+  text("Happy New Year!!\nYour adress numbers appear as shapes, patterns, colors, and so on...", -width/2+20, -height/2+40);
+  text("150-0011\nTokyo-to_Shibuya-ku_Higashi_1-3-3_HillCourtTokiwamatsu304\nTakagi_Kenta", -width/2+200, height/2-62);
   fill(0, 100);
   text("int_num1=" + num1 + ";\n" + 
        "int_num2=" + num2 + ";\n" + 
        "int_num3=" + num3 + ";\n" + 
        "int_num4=" + num4 + ";\n" +
-       "int_num5=" + num5 + ";\n" , -width/2+20, -height/2+60);
+       "int_num5=" + num5 + ";\n" , -width/2+20, -height/2+80);
   textAlign(CENTER);
+  fill(0);
   text("source code is here.", -width/2+85, height/2-162);
 
   textFont(main);
   textAlign(CENTER);
+  fill(0,100);
+  text("2020", 0, -200);
   
-  
-  for(float i=0; i<200; i++){
-    fill(200-i,i/2);
-    text("2020.", 0, -i);
-  }
 }
 
 //after this line is related with midi controller for developing...
@@ -170,7 +183,7 @@ void controllerChange(int channel, int number, int value) {
     num1 = int(map(value, 0, 127, 0, 300));
   }
   if (number == 2) {
-    num2 =int(map(value, 0, 127, 0, 9999));
+    num2 =int(map(value, 0, 127, 0, 999));
   }
   if (number == 3) {
     num3 = int(map(value, 0, 127, 1, 9));
