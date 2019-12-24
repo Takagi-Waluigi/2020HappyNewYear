@@ -20,7 +20,7 @@ int col, col2, col3;
 
 void setup() {
   size(600, 888);
- //size(500, 740);
+ 
   colorMode(HSB, 360, 100, 100);
 
   myBus = new MidiBus(this, 0, 1);
