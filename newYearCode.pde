@@ -1,16 +1,18 @@
 
-import themidibus.*;
-import processing.pdf.*;
+import themidibus.*; //デバック用MIDIコンのライブラリの宣言
+MidiBus myBus;
+
 PImage qr;
 PImage code;
 PImage img;
-MidiBus myBus;
+
 
 int num1 = ###;
 int num2 = ###;
 int num3 = #;
 int num4 = #;
 int num5 = #;
+
 int label = 0;
 float theta = 0;
 int offset = 12;
@@ -36,18 +38,18 @@ void draw() {
   randomSeed(num2);
   translate(width/2, height/2);
   
-  //call functions...
-  grid();
-  colCalc(); 
-  words();
-  wavePoints();
-  circles();
+  //各関数の呼び出しを行います
+  grid();      //背景のグリッド
+  colCalc();   //色のパターンの計算
+  words();     //文字
+  wavePoints();//背景の波
+  circles();   //円
   
 
-  //draw QR code.
+  //QRコードの画像を添付
   image(qr, -width/2+10, height/2-160, 150, 150);
   
-
+　//Sキーで時刻をファイル名にして保存
   if (key == 's' || key == 'S') {
     int mo = month();
     int d = day();
@@ -57,8 +59,10 @@ void draw() {
     exit();
   }
 }
-void colCalc() {
 
+//色に関する計算
+void colCalc() {
+　//num4を基準にしてmap関数で0〜360に変換した後前後120ずつ数字をずらします
   col = int(map(num4, 1, 99, 0, 360));
   col2 = col + 120;
   col3 = col - 120;
@@ -77,6 +81,7 @@ void colCalc() {
   }
 }
 
+//波の描画
 void wavePoints() {
   strokeWeight(0.8);
   for (int i=0; i<num1; i+=num5) {
@@ -109,6 +114,7 @@ void wavePoints() {
   }
 }
 
+//円の描画
 void circles() {
   beginShape(LINES);
   for (int i=0; i<num3*num5; i++) {
@@ -143,6 +149,7 @@ void circles() {
   endShape(CLOSE);
 }
 
+//グリッドの描画
 void grid(){
   for(int x=-width/2; x < width/2; x+=30){
     for(int y=-height/2; y < height/2; y+=30){
@@ -154,6 +161,7 @@ void grid(){
   }
 }
 
+//文字の描画
 void words() {
   fill(0);
   textFont(sub);
@@ -177,7 +185,7 @@ void words() {
   
 }
 
-//after this line is related with midi controller for developing...
+//MIDIコントローラに関する関数
 void controllerChange(int channel, int number, int value) {
   if (number == 1) {
     num1 = int(map(value, 0, 127, 0, 300));
