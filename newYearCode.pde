@@ -159,7 +159,7 @@ void words() {
   textFont(sub);
   textAlign(LEFT);
   text("Happy New Year!!\nYour adress numbers appear as shapes, patterns, colors, and so on...", -width/2+20, -height/2+40);
-  text("150-0011\nTokyo-to_Shibuya-ku_Higashi_1-3-3_HillCourtTokiwamatsu304\nTakagi_Kenta", -width/2+200, height/2-62);
+  text("###", -width/2+200, height/2-62);
   fill(0, 100);
   text("int_num1=" + num1 + ";\n" + 
        "int_num2=" + num2 + ";\n" + 
